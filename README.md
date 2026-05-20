@@ -17,23 +17,16 @@ The following multi-tier system topology visualizes the routing flow from client
 
 ```mermaid
 graph TD
-    %% Styling Definitions
-    classDef client fill:#0ea5e9,stroke:#0284c7,stroke-width:2px,color:#fff;
-    classDef proxy fill:#64748b,stroke:#475569,stroke-width:2px,color:#fff;
-    classDef backend fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff;
-    classDef worker fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff;
-    classDef db fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff;
-
     %% Nodes
-    A["React (TS) + Tailwind Frontend"] ::: client
-    B["RTK Query (Cache & State)"] ::: client
-    C["Nginx Reverse Proxy"] ::: proxy
-    D["Django REST Framework (DRF)"] ::: backend
-    E["Prediction/Preprocess Service"] ::: backend
-    F["Celery Background Worker"] ::: worker
-    G["Redis Broker & Cache"] ::: worker
-    H["PostgreSQL Database Cluster"] ::: db
-    I["ML Engines: Keras CNN & Scikit-Learn"] ::: worker
+    A["React (TS) + Tailwind Frontend"]
+    B["RTK Query (Cache & State)"]
+    C["Nginx Reverse Proxy"]
+    D["Django REST Framework (DRF)"]
+    E["Prediction/Preprocess Service"]
+    F["Celery Background Worker"]
+    G["Redis Broker & Cache"]
+    H["PostgreSQL Database Cluster"]
+    I["ML Engines: Keras CNN & Scikit-Learn"]
 
     %% Connections
     A <--> B
@@ -45,6 +38,20 @@ graph TD
     G <--> F
     F <--> I
     F <--> H
+
+    %% Styling Definitions
+    classDef client fill:#0ea5e9,stroke:#0284c7,stroke-width:2px,color:#fff;
+    classDef proxy fill:#64748b,stroke:#475569,stroke-width:2px,color:#fff;
+    classDef backend fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff;
+    classDef worker fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff;
+    classDef db fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff;
+
+    %% Class Assignments
+    class A,B client;
+    class C proxy;
+    class D,E backend;
+    class F,G,I worker;
+    class H db;
 ```
 
 ---
