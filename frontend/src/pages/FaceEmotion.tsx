@@ -92,25 +92,34 @@ export default function FaceEmotion() {
               animate={{ opacity: 1, scale: 1 }}
               className="space-y-6"
             >
-              <div className="text-center space-y-2 py-6">
+              <div className="text-center space-y-2 py-6 border-b border-gray-800">
                 <p className="text-sm uppercase tracking-wider text-gray-400 font-semibold">Detected Emotion</p>
-                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 capitalize">
-                  {data.emotion}
+                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 capitalize pb-2">
+                  {data.prediction}
+                </div>
+                <div className="text-gray-400 text-sm">
+                  Confidence: {(data.confidence * 100).toFixed(1)}%
                 </div>
               </div>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Confidence Score</span>
-                  <span className="font-medium">{(data.confidence * 100).toFixed(1)}%</span>
-                </div>
-                <div className="h-2 w-full bg-gray-800 rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${data.confidence * 100}%` }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
-                    className="h-full bg-blue-500 rounded-full"
-                  />
-                </div>
+              
+              <div className="space-y-4">
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Emotion Probabilities</h3>
+                {data.probabilities && Object.entries(data.probabilities).map(([emotion, prob]) => (
+                  <div key={emotion} className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="capitalize">{emotion.replace(' (Mock)', '')}</span>
+                      <span className="font-medium text-gray-400">{(prob * 100).toFixed(1)}%</span>
+                    </div>
+                    <div className="h-2 w-full bg-gray-800 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: `${(prob as number) * 100}%` }}
+                        transition={{ duration: 1, ease: 'easeOut' }}
+                        className={`h-full rounded-full ${emotion === data.prediction ? 'bg-blue-500' : 'bg-gray-600'}`}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           )}
