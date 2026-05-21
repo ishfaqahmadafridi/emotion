@@ -55,14 +55,14 @@ export default function MainLayout() {
         </nav>
 
         <div className="p-4 border-t border-[var(--color-border)] space-y-2">
-          <button className="flex w-full items-center gap-3 px-4 py-3 text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded-xl transition-colors">
+          <Link to="/history" className="flex w-full items-center gap-3 px-4 py-3 text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded-xl transition-colors">
             <History className="w-5 h-5" />
             <span>History</span>
-          </button>
-          <button className="flex w-full items-center gap-3 px-4 py-3 text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded-xl transition-colors">
+          </Link>
+          <Link to="/settings" className="flex w-full items-center gap-3 px-4 py-3 text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded-xl transition-colors">
             <Settings className="w-5 h-5" />
             <span>Settings</span>
-          </button>
+          </Link>
           <button className="flex w-full items-center gap-3 px-4 py-3 text-gray-400 hover:text-gray-200 hover:bg-gray-800/50 rounded-xl transition-colors text-sm mt-4">
             <HelpCircle className="w-4 h-4" />
             <span>Documentation</span>
